@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: true
+  tasks:
+  - name: Ansible delete multiple file example
+    file:
+      path: "{{ item }}"
+      state: absent
+    with_items:
+      - /tmp/borrame.ya
+# Usage: ansible-playbook delete_example.yaml -v -K

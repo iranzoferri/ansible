@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: debianservers
   # vars_files: vault.yml
   become: yes
   become_method: sudo
@@ -22,5 +22,6 @@
          mount: "{{ ansible_mounts | selectattr('mount','equalto',item.mount) | list | first }}"
        with_items:
          - "{{ ansible_mounts }}"
-# Usage: ansible-playbook -i hosts --ask-vault-pass checkdiskspaceall.ylm -vv
+# Usage: ansible-playbook check_disk_space_all.yml -vv -K
+# Usage with vault: ansible-playbook -i hosts --ask-vault-pass check_disk_space_all.yml -vv
 # Source: https://gist.github.com/goodc0re/cbaffab5674cc9324ecb591ab350e564
